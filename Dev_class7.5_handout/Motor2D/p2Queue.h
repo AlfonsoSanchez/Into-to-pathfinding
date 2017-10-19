@@ -104,36 +104,7 @@ public:
 
 		if (start != nullptr)
 		{
-		/*	if (start->next == nullptr)
-			{
-				RELEASE(start);
-			}
-			else
-			{
-
-				p2Queue_item<tdata>*   p_data;
-				p2Queue_item<tdata>*   p_next;
-				p_data = start;
-
-				while (p_data->next != NULL)
-				{
-					p_next = p_data->next;
-					
-					p_data = p_next;
-				}
-				RELEASE(p_data);*/
-
-
-				/*p2Queue_item<tdata>* last = GetLast();
-				p2Queue_item<tdata>*   deleter = start;
-				while (deleter->next != nullptr)
-				{
-					deleter = deleter->next;
-				}
-				
-				RELEASE(deleter);
-				
-				return true;*/
+		
 				p2Queue_item<tdata>* new_start = start->next;
 				item = start->data;
 				RELEASE(start);

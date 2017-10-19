@@ -37,17 +37,17 @@ void j1Map::ResetBFS()
 
 void j1Map::PropagateBFS()
 {
-	// TODO 1: If frontier queue contains elements
+	//!! TODO 1: If frontier queue contains elements
 	// pop the last one and calculate its 4 neighbors
 	iPoint point;
 	p2List_item<iPoint>* item = visited.start;
-	MapLayer* layerCollision = data.layers.start->next->data;
+	
 
 	if (frontier.GetLast() != nullptr)
 	{
 
 		point = *(frontier.Peek(0));
-		if (layerCollision->Get(point.x, point.y) == 0 && (point.x < layerCollision->width && point.y < layerCollision->height) && (point.x >= 0 && point.y >= 0))
+		if (IsWalkable(point.x,point.y))
 		{
 			if (visited.find(point) == -1)
 			{
@@ -160,7 +160,7 @@ void j1Map::PropagateBFS()
 
 		}
 	}
-	// TODO 2: For each neighbor, if not visited, add it
+	//!! TODO 2: For each neighbor, if not visited, add it
 	// to the frontier queue and visited list
 }
 
@@ -200,9 +200,14 @@ void j1Map::DrawBFS()
 
 bool j1Map::IsWalkable(int x, int y) const
 {
-	// TODO 3: return true only if x and y are within map limits
+	//!! TODO 3: return true only if x and y are within map limits
 	// and the tile is walkable (tile id 0 in the navigation layer)
-	return true;
+	MapLayer* layerCollision = data.layers.start->next->data;
+	if (layerCollision->Get(x, y) == 0 && (x < layerCollision->width && y < layerCollision->height) && (x >= 0 && y >= 0))
+	{
+		return true;
+	}
+	else return false;
 }
 
 void j1Map::Draw()
